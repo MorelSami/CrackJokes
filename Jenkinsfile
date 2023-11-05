@@ -6,27 +6,27 @@ pipeline {
     }
 
     environment{
-        domain = '${RUNSPACE}'
+        domain = "${RUNSPACE}"
     }
 
     stages {
         stage('Intro') {
             steps {
-                echo 'CrackJokes CI job start ...'
+                echo "CrackJokes CI #${BUILD_NUMBER} job start ..."
             }
         }
         stage('Build job details') {
             steps {
                 echo 'Current job details ...'
                 sh   'echo Environment: $domain'
-                echo '${JOB_TAG}- {$BUILD_NUMBER}'
+                echo "${BUILD_TAG}"
             }
         }
         stage('Git checkout') {
             steps {
-                sh  'echo Current branch $BRANCH_NAME ...'
+                sh  'echo Current branch [$BRANCH_NAME]:'
                 git branch: '$BRANCH_NAME', credentialsId: 'githhub-account', url: 'https://github.com/MorelSami/CrackJokes.git'
-                sh 'ls -lsrt src'
+                sh 'ls -lsrt tests'
                 sh 'cat README.md'
                 echo 'All good!'
             }
