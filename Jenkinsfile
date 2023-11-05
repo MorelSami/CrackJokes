@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        domain = $RUNSPACE
+        domain = '${RUNSPACE}'
     }
 
     stages {
@@ -30,6 +30,14 @@ pipeline {
                 sh 'cat README.md'
                 echo 'All good!'
             }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline job completed successfully.'
+        }
+        failure {
+            echo 'Pipeline job failed. Please check logs for more details.'
         }
     }
 }
