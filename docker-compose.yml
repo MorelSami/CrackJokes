@@ -1,15 +1,17 @@
 services:
-    laravel.test:
+    jokes_app:
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.2/app
+        container_name: jokes_app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
+            - 'cracker.ms.local:host-gateway'
         ports:
-            - '${APP_PORT:-80}:80'
+            - '${APP_PORT:-8099}:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
@@ -17,10 +19,13 @@ services:
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            DEBUG: '${APP_DEBUG:-1}'
+            VIRTUAL_HOST: '${APP_URL}'
         volumes:
             - '.:/var/www/html'
         networks:
             - sail
+        restart: always
         depends_on:
             - mysql
             - redis
@@ -36,7 +41,7 @@ services:
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            MYSQL_ALLOW_EMPTY_PASSWORD: 0
         volumes:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
@@ -50,6 +55,7 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+        restart: always
     redis:
         image: 'redis:alpine'
         ports:
@@ -65,6 +71,7 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+        restart: always
     selenium:
         image: selenium/standalone-chrome
         extra_hosts:
@@ -73,6 +80,7 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
+        restart: always
     mailpit:
         image: 'axllent/mailpit:latest'
         ports:
@@ -80,6 +88,7 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
+        restart: always
 networks:
     sail:
         driver: bridge
