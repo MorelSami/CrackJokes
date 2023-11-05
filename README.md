@@ -1,66 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Crack Jokes
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Crack Jokes is a personal project that I am working on to improve my development using Laravel (PHP) Framework.
 
-## About Laravel
+This simple project consists of taking in jokes from a remote host API (https://icanhazdadjoke.com/api, specifically the "Search for Jokes API"), storing them in a database, and then allowing  signed up users to search for a joke as well as rate and comment on any joke. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Project Info: CrackJokes Version:1.0.0 (This is still the first version so far)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Installation requirements:
+ 
+    • PHP 8.1 >
+    • Composer
+    • Laravel (PHP MVC Framework) https://laravel.com/docs/10.x
+    • Laravel Sail (MySQL, Redis) (required for this project)
+      
+Technology Languages (Used so far):
+      
+    • PHP8+
+    • PHPUnit
+    • JavaScript/jQuery
+    • Docker
+    • MySQL
+    • Jenkins (CI tool for automation test and vulnerability scan)
+    • JSON
+    • HTML5
+    • CSS3
+    • GIT
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+How to run CrackJokes((Version 1.0.0)):
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    • Once everything is setup and installed, all you have to do is clone or copy the project flles into your localhost server web repository(It depends on each user)
+    • I included an sql file(Jokes_db.sql) which you can manually run on your MYSQL server once installed.It should immediately create all required tables for this project into your defined database. 
+    • Once your database is all setup, you then have to restart the localhost web server and go to "http://localhost/CrackJokes/" which will redirect you to the home/login page for any user.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+CrackJokes Project Specifications:
+ 
+    • Initially my Jokes_db.sql file when run should create a general user for you to log in. (Note: you can obviously modify the user credentials in the database table 'User' that was initially created for you before manually running the sql file) 
+      
+    • So far the user can only create a new account and login after successful registration. (Note: Reset password functionality not yet implemented. 
+      
+    • After successful login, you will be redirected to the current user page where you will be able to view all possible fetched jokes from the HOST API. (Note: So far this particular version fetches all the jokes from the HOST API that only have  "hey" term.
+    • -Keep in mind that new jokes may be added to the HOST API at any time, so in order to get new jokes all you have to do is refresh your current page and the jokes will both be updated in the database and on your view page. 
+      
+    • The CrackJokes current version has three main functionalities so far:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+       1. The JOKE SEARCH functionality, which enables the current user to search for any joke based on its Id, keyword, rating and average rating of the joke (defined as taking the total rating value /# of
+       ratings). 
+       2. The VIEW/RATE JOKE  functionality,which enables the user to view a particular joke and also rate the joke from 1 to 5.
+       3. The JOKE COMMENT functionality, which enables any logged-in user to make a comment on a particular joke. The current user will have the possibility to view other user's comments as well.
 
-## Laravel Sponsors
+I hope you have fun with the jokes. :)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+MS
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
