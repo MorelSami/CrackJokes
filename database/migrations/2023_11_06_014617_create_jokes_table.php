@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('userId');
-            $table->string('name')->nullable($value = false);
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('jokes', function (Blueprint $table) {
+            $table->uuid('jokeId');
+            $table->longText('joke')->nullable($value = false);
+            $table->integer('total_rate_value', 20);
+            $table->integer('num_of_ratings', 20);
+            $table->decimal('AvgRating', $precision = 8, $scale = 2);
+            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
             $table->dateTime('created_at')->useCurrent();
-            $table->primary('userId');
+            $table->primary('jokeId');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_general_ci';
-            $table->comment('Application Users');
+            $table->comment('Jokes table');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('jokes');
     }
 };
