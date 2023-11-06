@@ -18,6 +18,7 @@ Technology Languages (Used so far):
     • PHP8+
     • PHPUnit
     • JavaScript/jQuery
+    • Alpine.js
     • Docker
     • MySQL
     • Jenkins (CI tool for automation test and vulnerability scan)
