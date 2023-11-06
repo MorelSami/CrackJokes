@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('jokes', function (Blueprint $table) {
             $table->uuid('jokeId');
             $table->longText('joke')->nullable($value = false);
-            $table->integer('total_rate_value', 20);
-            $table->integer('num_of_ratings', 20);
-            $table->decimal('AvgRating', $precision = 8, $scale = 2);
+            $table->integer('total_rate_value')->default(0);
+            $table->integer('num_of_ratings')->default(0);
+            $table->decimal('AvgRating', $precision = 8, $scale = 2)->default(0.0);
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
             $table->dateTime('created_at')->useCurrent();
             $table->primary('jokeId');

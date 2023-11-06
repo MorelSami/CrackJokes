@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id('commentId')->autoIncrement();
+            $table->id('commentId');
             $table->foreignId('userId')->constrained(
-                table: 'users', 
+                table: 'users',
+                column: 'userId',  
                 indexName: 'comment_user_id'
             );
             $table->foreignUuid('jokeId')->constrained(
                 table: 'jokes', 
+                column: 'jokeId', 
                 indexName: 'comment_joke_id'
             );
             $table->longText('comment')->nullable($value = false);
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
             $table->dateTime('created_at')->useCurrent();
-            $table->primary('commentId');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_general_ci';
